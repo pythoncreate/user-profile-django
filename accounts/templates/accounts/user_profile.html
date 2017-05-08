@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+
+{% block title %}User Profile | {{ user }}{{ super }}{% endblock %}
+
+{% block body %}
+<h1>My Profile</h1>
+
+<form action="/accounts/profile/" method="POST">{% csrf_token %}
+    <div>First Name: {{profile.first_name}}</div>
+    <div>Last Name: {{profile.last_name}}</div>
+    <div>Email: {{profile.email}}</div>
+    <div>Bio: {{profile.bio|safe}}</div>
+    <div>Date of Birth: {{profile.date_birth}}</div><br/>
+    {% if profile.image %}
+     <img src="{{profile.image.url}}">
+        {% else %}
+            <img src="{% static 'accounts/images/avatar.png' %}">
+    {% endif %}
+<br/>
+    <a href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+
+    <br/>
+    <a href="{% url 'accounts:change_password' %}">Change Password</a>
+
+</form>
+
+{% endblock %}

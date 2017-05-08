@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}User Profile | {{ user }}{{ super }}{% endblock %}
+
+{% block body %}
+<h1>My Profile</h1>
+
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+{{ form.as_p}}
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

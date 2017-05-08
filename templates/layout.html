@@ -1,5 +1,5 @@
-{% load static from staticfiles %}
 <!DOCTYPE html>
+{% load static from staticfiles %}
 <html lang="en">
 <head>
 
@@ -21,7 +21,7 @@
 
     <!-- CSS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="{% static "css/global.css" %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
 
     <!-- JS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -58,7 +58,7 @@
                             <li><a href="{% url 'accounts:sign_in' %}">Sign
                                 In</a></li>
                         {% else %}
-                            <!-- view profile link here? -->
+                            <li><a href="{% url 'accounts:profile' %}">My Profile</a></li>
                             <!-- edit profile link here? -->
                             <li><a href="{% url 'accounts:sign_out' %}">Sign Out</a></li>
                         {% endif %}
