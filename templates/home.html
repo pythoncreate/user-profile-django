@@ -1,7 +1,15 @@
 {% extends 'layout.html' %}
 {% block body %}
     <div class="grid-25">
-        nav here maybe?
+         {% if not user.is_authenticated %}
+                            <li><a href="{% url 'accounts:sign_up' %}">Sign Up</a></li>
+                            <li><a href="{% url 'accounts:sign_in' %}">Sign
+                                In</a></li>
+                        {% else %}
+                            <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+                            <!-- edit profile link here? -->
+                            <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                        {% endif %}
     </div>
     <div class="grid-75">
         <h1>Welcome!</h1>
