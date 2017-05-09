@@ -61,21 +61,21 @@ def sign_out(request):
 
 @login_required
 def view_profile(request):
-    profile = get_object_or_404(models.UserProfile)
+    profile = request.user.userprofile
     return render(request, 'accounts/user_profile.html', {'profile':profile})
 
 @login_required
 def edit_profile(request):
-    profile = get_object_or_404(models.UserProfile)
+    user = request.user
     if request.method == 'POST':
-        form = forms.EditProfileForm(data=request.POST, files=request.FILES, instance=profile)
+        form = forms.EditProfileForm(data=request.POST, files=request.FILES, instance=user.userprofile)
         if form.is_valid():
             form.save()
             return redirect('/accounts/profile')
         else:
             return render(request, 'accounts/edit_profile.html', {'form':form})
     else:
-        form = forms.EditProfileForm(instance=profile)
+        form = forms.EditProfileForm(instance=user.userprofile)
         args = {'form':form}
         return render(request, 'accounts/edit_profile.html', args)
 
